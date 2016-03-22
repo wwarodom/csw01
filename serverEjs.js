@@ -6,11 +6,11 @@ var posts_json = [{'user':'John','comment':'Hello John' },
 				  {'user':'Jim','comment':'Hello Jim' }]
 var urlencodedParser = bodyParser.urlencoded({extended:false})
 
-app.set('views','./views')		
-app.set('view engine','ejs')
-app.get('/ejs',function(req,res){
+	app.set('views','./views')		
+	app.set('view engine','ejs')
+	app.get('/ejs',function(req,res){
 	res.render('post', 
-		{ title: 'Hello Jade', 
+		{ title: 'Hello EJS', 
 		  message:'How are you doing?',
 		  posts: posts_json} )
 })
