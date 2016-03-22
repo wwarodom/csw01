@@ -9,5 +9,12 @@
 		   <li><%= post.user %>: <%= post.comment %> </li> 
 		<% }); %> 
 		</ul>
+
+		<h1> Input User</h1>
+		<form action="/addUser" method="post">
+		User: <input type="text" name="user" value="Ken" required /> <br><br>
+		Comment: <textarea name="comment" rows="5"> This is a comment </textarea><br>
+		<input type="submit">
+		</form>
 	</body>
 </html>
