@@ -5,13 +5,15 @@ var bodyParser = require('body-parser')
 var bears = [{'id':0,'name':'Vinnie','weight':100},
 			 {'id':1,'name':'Pooh','weight':80}] 	
 
+var bearIndex = 2;
+
 app.use(express.static('public'))
 			 		  
 router.route('/bears') 
 	// post new bear
   .post(function(req, res) { 
     var bear = {}
-    bear.id = req.body.id
+    bear.id = bearIndex++
     bear.name = req.body.name 
     bear.weight = req.body.weight
     bears.push(bear)
