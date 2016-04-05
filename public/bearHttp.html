@@ -12,6 +12,7 @@
 	<ul>
 		<li ng-repeat="bear in bears track by $index">
 			{{bear}}
+			<button type="submit" ng-click="get(bear.id)" >Get</button>
 		</li>
 	</ul>
 
@@ -41,6 +42,13 @@
 			.then( function(response) {
 				$scope.bears = response.data
 			})	
+		}
+
+		$scope.get = function(id) {
+			$http.get("/api/bears/" + id)
+			.then(function(response){
+				$scope.result = response.data
+			})
 		}
 	})
 
