@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<title>Bear</title>
+</head>
+<body>
+
+<div ng-app="bearApp" ng-controller="BearCtrl">
+	<h2>Bear Restful</h2>
+	<ul>
+		<li ng-repeat="bear in bears track by $index">
+			{{bear}}
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	var app = angular.module("bearApp",[])
+	app.controller("BearCtrl", function($scope, $http) {
+		$http.get("/api/bears")
+			.then( function(response) {
+				$scope.bears = response.data
+			})
+	})
+</script>
+
+
+</body>
+</html>

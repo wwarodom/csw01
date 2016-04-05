@@ -3,7 +3,10 @@ var app = express()
 var router = express.Router() 
 var bodyParser = require('body-parser')
 var bears = [{'id':0,'name':'Vinnie','weight':100},
-			 {'id':1,'name':'Pooh','weight':80}] 			  
+			 {'id':1,'name':'Pooh','weight':80}] 	
+
+app.use(express.static('public'))
+			 		  
 router.route('/bears') 
 	// post new bear
   .post(function(req, res) { 
@@ -12,14 +15,17 @@ router.route('/bears')
     bear.name = req.body.name 
     bear.weight = req.body.weight
     bears.push(bear)
-    res.json(bears) 
+    res.json({message: 'Bear created!'})
+    // res.json(bears) 
   })
 
   // get all bears
+  //http://localhost/api/bears
   .get(function(req,res) {
   	res.json(bears)
   })
 
+//http://localhost/api/bears/:bear_id
 router.route('/bears/:bear_id')
 	// show a bear
 	.get(function(req,res) {
@@ -42,8 +48,8 @@ router.route('/bears/:bear_id')
 	})
 
 // all of our routes will be prefixed with /api 
-// app.use('/api', bodyParser.json(), router)
-app.use('/api',bodyParser.urlencoded({extended:false}), router)
+app.use('/api', bodyParser.json(), router)
+// app.use('/api',bodyParser.urlencoded({extended:false}), router)
 
 app.listen(8000, function (){
 	console.log('Server is running...')
