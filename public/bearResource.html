@@ -38,6 +38,17 @@
 	 		})
 		} 
 
+	 	$scope.add = function() {
+	   	  // var givenBear = new Bear($scope.addBear); 
+		  // givenBear.$save(function(data){ 
+		  //   console.log(data.message); 
+		  //   $scope.bear = {}; 
+		  // })
+
+		  Bear.save({name: $scope.addBear.name, weight: $scope.addBear.weight})
+		  $scope.bears = Bear.query()
+		} 
+
 
 	})
 </script>
