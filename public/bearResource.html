@@ -14,15 +14,25 @@
 		<li ng-repeat="bear in bears track by $index">
 			{{bear}}
 			<button type="submit" ng-click="get(bear.id)" >Get</button>
+			<button type="submit" ng-click="edit(bear.id)" >Edit</button>
 		</li>
 	</ul>
 
 	<h2>New Bear </h2>
 	<label for="name">Name: </label>
-	<input type="text" id="name" ng-model="addBear.name"></input> <br>
+	<input type="text" id="name" ng-model="addBear.name"><br>
 	<label for="weight">Weight: </label>
-	<input type="text" id="weight" ng-model="addBear.weight"></input> <br>
+	<input type="text" id="weight" ng-model="addBear.weight"> <br>
 	<button ng-click="add()">Add</button><br>
+
+	<h2>Edit Bear </h2>
+	<input type="hidden" id="id" ng-model="editBear.id">
+	<label for="name">Name: </label>
+	<input type="text" id="name" ng-model="editBear.name"> <br>
+	<label for="weight">Weight: </label>
+	<input type="text" id="weight" ng-model="editBear.weight"> <br>
+	<button ng-click="update(editBear.id)">Add</button><br>
+
 
 </div>
 
@@ -49,6 +59,14 @@
 		  $scope.bears = Bear.query()
 		} 
 
+	 	$scope.edit = function(id) {
+	 		Bear.get({bear_id:id}, function(bear){
+	 			$scope.editBear.id = bear.id
+	 			$scope.editBear.name = bear.name
+	 			$scope.editBear.weight = bear.weight
+	 			$scope.result = "Edit Bear " + id
+	 		})
+		} 
 
 	})
 </script>
